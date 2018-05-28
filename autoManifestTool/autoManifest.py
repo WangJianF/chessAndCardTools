@@ -37,7 +37,10 @@ def travelCb(file):
 	fileName = os.path.relpath(file, assetsDir)
 	fileName = fileName.replace('\\', '/')
 	targetTab[fileName] = {}
-	targetTab[fileName]["md5"] = hashlib.md5(file).hexdigest()
+	fd = open(file, "rb")
+	content = fd.read()
+	fd.close()
+	targetTab[fileName]["md5"] = hashlib.md5(content).hexdigest()
 	targetTab[fileName]["size"] = os.path.getsize(file)
 
 
